@@ -24,7 +24,7 @@ namespace PolynomLib
                 {
                     sb.Append(polynom[i]);
                     if (i >= 1)
-                        sb.Append("X");
+                        sb.Append("x");
                     if (i >= 2)
                         sb.Append($"^{i}");
                     if (i != polynom.Length - 1)
@@ -68,10 +68,18 @@ namespace PolynomLib
 
             return new Polynom(result);
         }
-       /* public static Polynom operator *(Polynom x, Polynom y)
+        public static Polynom operator *(Polynom x, Polynom y)
         {
-            //TODO
-        }*/
+            double[] result = new double[x.polynom.Length + y.polynom.Length-1];
+            for(int i=0;i<x.polynom.Length;i++)
+            {
+                for(int j=0;j<y.polynom.Length;j++)
+                {
+                    result[i + j] += x.polynom[i] * y.polynom[j];
+                }
+            }
+            return new Polynom(result);
+        }
         public override int GetHashCode()
         {
             int result=0;
